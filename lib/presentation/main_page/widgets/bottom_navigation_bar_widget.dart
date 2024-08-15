@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spotify_clone/core/colors.dart';
+import 'package:spotify_clone/core/constants.dart';
 
 final bottomNaviListenable = ValueNotifier(0);
 
