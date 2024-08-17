@@ -18,32 +18,38 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AccessCodeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
     required TResult Function() refreshCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
     TResult? Function()? refreshCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
     TResult Function()? refreshCode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
     required TResult Function(_RefreshCode value) refreshCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
     TResult? Function(_RefreshCode value)? refreshCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
     TResult Function(_RefreshCode value)? refreshCode,
     required TResult orElse(),
   }) =>
@@ -66,6 +72,108 @@ class _$AccessCodeEventCopyWithImpl<$Res, $Val extends AccessCodeEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$InitializeImplCopyWith<$Res> {
+  factory _$$InitializeImplCopyWith(
+          _$InitializeImpl value, $Res Function(_$InitializeImpl) then) =
+      __$$InitializeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitializeImplCopyWithImpl<$Res>
+    extends _$AccessCodeEventCopyWithImpl<$Res, _$InitializeImpl>
+    implements _$$InitializeImplCopyWith<$Res> {
+  __$$InitializeImplCopyWithImpl(
+      _$InitializeImpl _value, $Res Function(_$InitializeImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitializeImpl implements _Initialize {
+  const _$InitializeImpl();
+
+  @override
+  String toString() {
+    return 'AccessCodeEvent.initialize()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitializeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
+    required TResult Function() refreshCode,
+  }) {
+    return initialize();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
+    TResult? Function()? refreshCode,
+  }) {
+    return initialize?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
+    TResult Function()? refreshCode,
+    required TResult orElse(),
+  }) {
+    if (initialize != null) {
+      return initialize();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
+    required TResult Function(_RefreshCode value) refreshCode,
+  }) {
+    return initialize(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
+    TResult? Function(_RefreshCode value)? refreshCode,
+  }) {
+    return initialize?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
+    TResult Function(_RefreshCode value)? refreshCode,
+    required TResult orElse(),
+  }) {
+    if (initialize != null) {
+      return initialize(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initialize implements AccessCodeEvent {
+  const factory _Initialize() = _$InitializeImpl;
 }
 
 /// @nodoc
@@ -106,6 +214,7 @@ class _$RefreshCodeImpl implements _RefreshCode {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
     required TResult Function() refreshCode,
   }) {
     return refreshCode();
@@ -114,6 +223,7 @@ class _$RefreshCodeImpl implements _RefreshCode {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
     TResult? Function()? refreshCode,
   }) {
     return refreshCode?.call();
@@ -122,6 +232,7 @@ class _$RefreshCodeImpl implements _RefreshCode {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
     TResult Function()? refreshCode,
     required TResult orElse(),
   }) {
@@ -134,6 +245,7 @@ class _$RefreshCodeImpl implements _RefreshCode {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
     required TResult Function(_RefreshCode value) refreshCode,
   }) {
     return refreshCode(this);
@@ -142,6 +254,7 @@ class _$RefreshCodeImpl implements _RefreshCode {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
     TResult? Function(_RefreshCode value)? refreshCode,
   }) {
     return refreshCode?.call(this);
@@ -150,6 +263,7 @@ class _$RefreshCodeImpl implements _RefreshCode {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
     TResult Function(_RefreshCode value)? refreshCode,
     required TResult orElse(),
   }) {

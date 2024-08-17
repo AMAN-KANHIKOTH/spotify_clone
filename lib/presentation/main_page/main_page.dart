@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_clone/application/access_code/bloc/access_code_bloc.dart';
@@ -14,6 +16,10 @@ class MainPage extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       BlocProvider.of<AccessCodeBloc>(context)
           .add(const AccessCodeEvent.refreshCode());
+      Timer.periodic(
+        const Duration(hours: 1),
+        (timer) => refreshAccessCodeAfterAnHour(context),
+      );
     });
 
     return BlocBuilder<AccessCodeBloc, AccessCodeState>(
@@ -38,4 +44,9 @@ class MainPage extends StatelessWidget {
       },
     );
   }
+}
+
+refreshAccessCodeAfterAnHour(BuildContext context) async {
+  BlocProvider.of<AccessCodeBloc>(context)
+      .add(const AccessCodeEvent.refreshCode());
 }

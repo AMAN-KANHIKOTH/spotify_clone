@@ -4,7 +4,6 @@ import 'package:spotify_clone/application/access_code/bloc/access_code_bloc.dart
 import 'package:spotify_clone/core/constants.dart';
 import 'package:spotify_clone/domain/core/di/injectable.dart';
 import 'package:spotify_clone/presentation/main_page/main_page.dart';
-import 'package:spotify_clone/presentation/main_page/widgets/screen_splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
