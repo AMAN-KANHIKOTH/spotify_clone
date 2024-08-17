@@ -5,7 +5,10 @@ class ScreenYourLibrary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Your Library',
-      style: TextStyle(color: Colors.white),));
+    return const Center(
+        child: Text(
+      'Your Library',
+      style: TextStyle(color: Colors.white),
+    ));
   }
 }
