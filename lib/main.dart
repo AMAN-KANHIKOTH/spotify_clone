@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_clone/application/access_code/bloc/access_code_bloc.dart';
 import 'package:spotify_clone/core/constants.dart';
-import 'package:spotify_clone/presentation/splash/screen_splash.dart';
+import 'package:spotify_clone/domain/core/di/injectable.dart';
+import 'package:spotify_clone/presentation/main_page/main_page.dart';
+import 'package:spotify_clone/presentation/main_page/widgets/screen_splash.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureInjection();
   runApp(const MyApp());
 }
 
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AccessCodeBloc(),
+          create: (context) => getIt<AccessCodeBloc>(),
         ),
       ],
       child: MaterialApp(
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const ScreenSplash(),
+        home: MainPage(),
       ),
     );
   }

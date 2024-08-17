@@ -1,20 +1,28 @@
+
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+import 'package:spotify_clone/domain/access_code/access_code_services.dart';
 import 'package:spotify_clone/domain/core/failures/failures.dart';
-import 'package:spotify_clone/infrastructure/access_code/get_access_code.dart';
 
 part 'access_code_event.dart';
 part 'access_code_state.dart';
 part 'access_code_bloc.freezed.dart';
 
+@injectable
 class AccessCodeBloc extends Bloc<AccessCodeEvent, AccessCodeState> {
-  AccessCodeBloc() : super(AccessCodeState.initial()) {
-    on<RefreshCode>((event, emit) async {
+  final AccessCodeServices _accessCodeServices;
+  AccessCodeBloc(this._accessCodeServices) : super(AccessCodeState.initial()) {
+    on<_RefreshCode>((event, emit) async {
       //loading
       emit(state.copyWith(isLoading: true));
+      await Future.delayed(const Duration(seconds: 5));
+
       //Get Token
-      Either<MainFailures, String> getAccessOption = await getAccessCode();
+      Either<MainFailures, String> getAccessOption =
+          await _accessCodeServices.getAccessCode();
       //return token
       emit(getAccessOption.fold(
         (failure) => state.copyWith(

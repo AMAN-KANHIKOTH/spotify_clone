@@ -34,17 +34,17 @@ mixin _$AccessCodeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RefreshCode value) refreshCode,
+    required TResult Function(_RefreshCode value) refreshCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RefreshCode value)? refreshCode,
+    TResult? Function(_RefreshCode value)? refreshCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RefreshCode value)? refreshCode,
+    TResult Function(_RefreshCode value)? refreshCode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,7 +86,7 @@ class __$$RefreshCodeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RefreshCodeImpl implements RefreshCode {
+class _$RefreshCodeImpl implements _RefreshCode {
   const _$RefreshCodeImpl();
 
   @override
@@ -134,7 +134,7 @@ class _$RefreshCodeImpl implements RefreshCode {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RefreshCode value) refreshCode,
+    required TResult Function(_RefreshCode value) refreshCode,
   }) {
     return refreshCode(this);
   }
@@ -142,7 +142,7 @@ class _$RefreshCodeImpl implements RefreshCode {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RefreshCode value)? refreshCode,
+    TResult? Function(_RefreshCode value)? refreshCode,
   }) {
     return refreshCode?.call(this);
   }
@@ -150,7 +150,7 @@ class _$RefreshCodeImpl implements RefreshCode {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RefreshCode value)? refreshCode,
+    TResult Function(_RefreshCode value)? refreshCode,
     required TResult orElse(),
   }) {
     if (refreshCode != null) {
@@ -160,8 +160,8 @@ class _$RefreshCodeImpl implements RefreshCode {
   }
 }
 
-abstract class RefreshCode implements AccessCodeEvent {
-  const factory RefreshCode() = _$RefreshCodeImpl;
+abstract class _RefreshCode implements AccessCodeEvent {
+  const factory _RefreshCode() = _$RefreshCodeImpl;
 }
 
 /// @nodoc
