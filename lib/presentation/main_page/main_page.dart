@@ -7,10 +7,11 @@ import 'package:spotify_clone/presentation/home/screen_home.dart';
 import 'package:spotify_clone/presentation/main_page/widgets/bottom_navigation_bar_widget.dart';
 import 'package:spotify_clone/presentation/main_page/widgets/screen_splash.dart';
 import 'package:spotify_clone/presentation/search/screen_search.dart';
+import 'package:spotify_clone/presentation/your_library/your_library.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({super.key});
-  final pages = [ScreenHome(), ScreenSearch()];
+  final pages = [ScreenHome(), ScreenSearch(), ScreenYourLibrary()];
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -9,11 +9,38 @@ class ScreenHome extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(preferredSize: size, child: AppBarWidget()),
-      body: const Center(
-          child: Text(
-        'Home',
-        style: TextStyle(color: Colors.white),
-      )),
+      body: Column(children: [
+        GridView.count(
+          crossAxisCount: 2,
+          shrinkWrap: true,
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 10,
+            top: 10,
+          ),
+          childAspectRatio: 3,
+          mainAxisSpacing: 7,
+          crossAxisSpacing: 5,
+          children: List.generate(
+            6,
+            (index) => Container(
+              width: double.infinity,
+              color: Colors.accents[index],
+              child: Row(
+                children: [
+                  //Image.network(),
+                  Text('data'),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const Center(
+            child: Text(
+          'Home',
+          style: TextStyle(color: Colors.white),
+        )),
+      ]),
     );
   }
 }
