@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/presentation/home/widgets/your_favourite_artists.dart';
 import 'package:spotify_clone/presentation/widgets/app_bar_widget.dart';
 
 class ScreenHome extends StatelessWidget {
@@ -35,6 +36,7 @@ class ScreenHome extends StatelessWidget {
             ),
           ),
         ),
+        YourFavouriteArtists(),
         const Center(
             child: Text(
           'Home',
