@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_clone/application/access_code/bloc/access_code_bloc.dart';
+import 'package:spotify_clone/application/home/bloc/home_bloc.dart';
 import 'package:spotify_clone/core/constants.dart';
 import 'package:spotify_clone/domain/core/di/injectable.dart';
 import 'package:spotify_clone/presentation/main_page/main_page.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => getIt<AccessCodeBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<HomeBloc>(),
         ),
       ],
       child: MaterialApp(

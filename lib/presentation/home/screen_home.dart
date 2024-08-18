@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spotify_clone/application/access_code/bloc/access_code_bloc.dart';
+import 'package:spotify_clone/application/home/bloc/home_bloc.dart';
 import 'package:spotify_clone/presentation/home/widgets/your_favourite_artists.dart';
 import 'package:spotify_clone/presentation/widgets/app_bar_widget.dart';
 
@@ -8,6 +13,11 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      BlocProvider.of<HomeBloc>(context).add(HomeEvent.getArtists(
+          AccessCode:
+              BlocProvider.of<AccessCodeBloc>(context).state.accessCode));
+    });
     return Scaffold(
       appBar: PreferredSize(preferredSize: size, child: AppBarWidget()),
       body: Column(children: [

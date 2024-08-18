@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:spotify_clone/domain/access_code/access_code_services.dart';
@@ -30,8 +29,6 @@ class GetAccessCodeRepo implements AccessCodeServices {
         return left(const MainFailures.serverFailures());
       }
     } catch (e) {
-      log('except');
-      log(e.toString());
       return left(const MainFailures.clientFailures());
     }
   }
