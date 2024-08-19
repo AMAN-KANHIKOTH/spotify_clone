@@ -13,7 +13,7 @@ class HomeRepo implements HomeService {
     try {
       final dio = Dio();
       final response = await dio.request(
-          'https://api.spotify.com/v1/artists?ids=1mYsTxnqsietFxj1OgoGbG,09UmIX92EUH9hAK4bxvHx6,1wRPtKGflJrBx9BmLsSwlU,0FEJqmeLRzsXj8hgcZaAyB',
+          'https://api.spotify.com/v1/artists?ids=1mYsTxnqsietFxj1OgoGbG,4YRxDV8wJFPHPTeXepOstw,09UmIX92EUH9hAK4bxvHx6,1wRPtKGflJrBx9BmLsSwlU,0FEJqmeLRzsXj8hgcZaAyB',
           options: Options(
               method: 'GET', headers: {'Authorization': 'Bearer $AccessCode'}));
       if (response.statusCode == 200) {

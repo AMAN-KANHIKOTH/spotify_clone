@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:spotify_clone/domain/access_code/access_code_services.dart';
@@ -24,6 +25,7 @@ class GetAccessCodeRepo implements AccessCodeServices {
       });
       if (response.statusCode == 200) {
         final _response = jsonDecode(response.body);
+        log(_response['access_token']);
         return right(_response['access_token']);
       } else {
         return left(const MainFailures.serverFailures());
