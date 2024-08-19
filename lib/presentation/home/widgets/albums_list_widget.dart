@@ -5,9 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_clone/application/home/bloc/home_bloc.dart';
 
-class YourFavouriteArtists extends StatelessWidget {
-  const YourFavouriteArtists({super.key});
-
+class AlbumsListWidget extends StatelessWidget {
+  final String title;
+  const AlbumsListWidget({super.key, required this.title});
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -15,7 +15,7 @@ class YourFavouriteArtists extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Your favourite artists',
+          title,
           style: TextStyle(
             color: Colors.white,
             fontSize: 25,
@@ -23,9 +23,10 @@ class YourFavouriteArtists extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         SizedBox(
-          height: size.height * 0.225,
+          height: size.height * 0.235,
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
+              //log(state.artistsList[0].images![1].url.toString());
               return ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -35,19 +36,19 @@ class YourFavouriteArtists extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Column(
                       children: [
-                        CircleAvatar(
-                          minRadius: 80,
-                          backgroundImage: NetworkImage(
-                              state.artistsList[index].images![0].url!),
-                          // child: Image.network(
-                          //   fit: BoxFit.scaleDown,
-                          //   state.artistsList[index].images![0].url!,
-                          //   width: 160,
-                          // ),
+                        Image.network(
+                          state.artistsList[index].images![0].url!,
+                          fit: BoxFit.fill,
+                          width: 160,
+                          height: 160,
                         ),
                         const SizedBox(height: 5),
                         Text(
                           state.artistsList[index].name ?? 'Unknown',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Text(
+                          'data',
                           style: TextStyle(color: Colors.white),
                         )
                       ],
