@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:spotify_clone/domain/core/failures/failures.dart';
 import 'package:spotify_clone/domain/home/home_service.dart';
+import 'package:spotify_clone/domain/home/model/album_model.dart';
 import 'package:spotify_clone/domain/home/model/artist_model.dart';
 
 part 'home_event.dart';
@@ -20,7 +21,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       //Fetch Artists
 
       final Either<MainFailures, ArtistModel> getArtists =
-          await _homeService.getArtists(event.AccessCode);
+          await _homeService.getArtists(event.accessCode);
       //send to ui
       emit(getArtists.fold(
         (l) => state.copyWith(
@@ -31,6 +32,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             isloading: false,
             isError: false,
             artistsList: success.artists ?? []),
+      ));
+    });
+
+    on<GetAlbums>((event, emit) async {
+      //loading
+      emit(state.copyWith(isloading: true));
+      //Fetch Albums
+      final Either<MainFailures, Albums> getAlbums =
+          await _homeService.getAlbums(event.accessCode);
+      //send to ui
+      emit(getAlbums.fold(
+        (failure) => state.copyWith(
+          isloading: false,
+          isError: true,
+        ),
+        (success) => state.copyWith(
+          isloading: false,
+          isError: false,
+          albumList: success.items ?? [],
+        ),
       ));
     });
   }

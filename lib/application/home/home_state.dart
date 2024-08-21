@@ -6,6 +6,7 @@ class HomeState with _$HomeState {
     required bool isloading,
     required bool isError,
     required List<Artist> artistsList,
+    required List<Item> albumList,
   }) = _Initial;
 
   factory HomeState.initialise() {
@@ -13,6 +14,7 @@ class HomeState with _$HomeState {
       isloading: false,
       isError: false,
       artistsList: [],
+      albumList: [],
     );
   }
 }

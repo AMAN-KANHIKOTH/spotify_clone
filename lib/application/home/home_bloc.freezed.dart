@@ -16,36 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeEvent {
-  String get AccessCode => throw _privateConstructorUsedError;
+  String get accessCode => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String AccessCode) getArtists,
+    required TResult Function(String accessCode) getArtists,
+    required TResult Function(String accessCode) getAlbums,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String AccessCode)? getArtists,
+    TResult? Function(String accessCode)? getArtists,
+    TResult? Function(String accessCode)? getAlbums,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String AccessCode)? getArtists,
+    TResult Function(String accessCode)? getArtists,
+    TResult Function(String accessCode)? getAlbums,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetArtists value) getArtists,
+    required TResult Function(GetAlbums value) getAlbums,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetArtists value)? getArtists,
+    TResult? Function(GetAlbums value)? getAlbums,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetArtists value)? getArtists,
+    TResult Function(GetAlbums value)? getAlbums,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,7 +66,7 @@ abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res, HomeEvent>;
   @useResult
-  $Res call({String AccessCode});
+  $Res call({String accessCode});
 }
 
 /// @nodoc
@@ -76,12 +82,12 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? AccessCode = null,
+    Object? accessCode = null,
   }) {
     return _then(_value.copyWith(
-      AccessCode: null == AccessCode
-          ? _value.AccessCode
-          : AccessCode // ignore: cast_nullable_to_non_nullable
+      accessCode: null == accessCode
+          ? _value.accessCode
+          : accessCode // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -95,7 +101,7 @@ abstract class _$$GetArtistsImplCopyWith<$Res>
       __$$GetArtistsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String AccessCode});
+  $Res call({String accessCode});
 }
 
 /// @nodoc
@@ -109,12 +115,12 @@ class __$$GetArtistsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? AccessCode = null,
+    Object? accessCode = null,
   }) {
     return _then(_$GetArtistsImpl(
-      AccessCode: null == AccessCode
-          ? _value.AccessCode
-          : AccessCode // ignore: cast_nullable_to_non_nullable
+      accessCode: null == accessCode
+          ? _value.accessCode
+          : accessCode // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -123,14 +129,14 @@ class __$$GetArtistsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetArtistsImpl implements GetArtists {
-  const _$GetArtistsImpl({required this.AccessCode});
+  const _$GetArtistsImpl({required this.accessCode});
 
   @override
-  final String AccessCode;
+  final String accessCode;
 
   @override
   String toString() {
-    return 'HomeEvent.getArtists(AccessCode: $AccessCode)';
+    return 'HomeEvent.getArtists(accessCode: $accessCode)';
   }
 
   @override
@@ -138,12 +144,12 @@ class _$GetArtistsImpl implements GetArtists {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetArtistsImpl &&
-            (identical(other.AccessCode, AccessCode) ||
-                other.AccessCode == AccessCode));
+            (identical(other.accessCode, accessCode) ||
+                other.accessCode == accessCode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, AccessCode);
+  int get hashCode => Object.hash(runtimeType, accessCode);
 
   @JsonKey(ignore: true)
   @override
@@ -154,27 +160,30 @@ class _$GetArtistsImpl implements GetArtists {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String AccessCode) getArtists,
+    required TResult Function(String accessCode) getArtists,
+    required TResult Function(String accessCode) getAlbums,
   }) {
-    return getArtists(AccessCode);
+    return getArtists(accessCode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String AccessCode)? getArtists,
+    TResult? Function(String accessCode)? getArtists,
+    TResult? Function(String accessCode)? getAlbums,
   }) {
-    return getArtists?.call(AccessCode);
+    return getArtists?.call(accessCode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String AccessCode)? getArtists,
+    TResult Function(String accessCode)? getArtists,
+    TResult Function(String accessCode)? getAlbums,
     required TResult orElse(),
   }) {
     if (getArtists != null) {
-      return getArtists(AccessCode);
+      return getArtists(accessCode);
     }
     return orElse();
   }
@@ -183,6 +192,7 @@ class _$GetArtistsImpl implements GetArtists {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetArtists value) getArtists,
+    required TResult Function(GetAlbums value) getAlbums,
   }) {
     return getArtists(this);
   }
@@ -191,6 +201,7 @@ class _$GetArtistsImpl implements GetArtists {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetArtists value)? getArtists,
+    TResult? Function(GetAlbums value)? getAlbums,
   }) {
     return getArtists?.call(this);
   }
@@ -199,6 +210,7 @@ class _$GetArtistsImpl implements GetArtists {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetArtists value)? getArtists,
+    TResult Function(GetAlbums value)? getAlbums,
     required TResult orElse(),
   }) {
     if (getArtists != null) {
@@ -209,14 +221,152 @@ class _$GetArtistsImpl implements GetArtists {
 }
 
 abstract class GetArtists implements HomeEvent {
-  const factory GetArtists({required final String AccessCode}) =
+  const factory GetArtists({required final String accessCode}) =
       _$GetArtistsImpl;
 
   @override
-  String get AccessCode;
+  String get accessCode;
   @override
   @JsonKey(ignore: true)
   _$$GetArtistsImplCopyWith<_$GetArtistsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetAlbumsImplCopyWith<$Res>
+    implements $HomeEventCopyWith<$Res> {
+  factory _$$GetAlbumsImplCopyWith(
+          _$GetAlbumsImpl value, $Res Function(_$GetAlbumsImpl) then) =
+      __$$GetAlbumsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String accessCode});
+}
+
+/// @nodoc
+class __$$GetAlbumsImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetAlbumsImpl>
+    implements _$$GetAlbumsImplCopyWith<$Res> {
+  __$$GetAlbumsImplCopyWithImpl(
+      _$GetAlbumsImpl _value, $Res Function(_$GetAlbumsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accessCode = null,
+  }) {
+    return _then(_$GetAlbumsImpl(
+      accessCode: null == accessCode
+          ? _value.accessCode
+          : accessCode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetAlbumsImpl implements GetAlbums {
+  const _$GetAlbumsImpl({required this.accessCode});
+
+  @override
+  final String accessCode;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getAlbums(accessCode: $accessCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetAlbumsImpl &&
+            (identical(other.accessCode, accessCode) ||
+                other.accessCode == accessCode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, accessCode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetAlbumsImplCopyWith<_$GetAlbumsImpl> get copyWith =>
+      __$$GetAlbumsImplCopyWithImpl<_$GetAlbumsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String accessCode) getArtists,
+    required TResult Function(String accessCode) getAlbums,
+  }) {
+    return getAlbums(accessCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String accessCode)? getArtists,
+    TResult? Function(String accessCode)? getAlbums,
+  }) {
+    return getAlbums?.call(accessCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String accessCode)? getArtists,
+    TResult Function(String accessCode)? getAlbums,
+    required TResult orElse(),
+  }) {
+    if (getAlbums != null) {
+      return getAlbums(accessCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetArtists value) getArtists,
+    required TResult Function(GetAlbums value) getAlbums,
+  }) {
+    return getAlbums(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetArtists value)? getArtists,
+    TResult? Function(GetAlbums value)? getAlbums,
+  }) {
+    return getAlbums?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetArtists value)? getArtists,
+    TResult Function(GetAlbums value)? getAlbums,
+    required TResult orElse(),
+  }) {
+    if (getAlbums != null) {
+      return getAlbums(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetAlbums implements HomeEvent {
+  const factory GetAlbums({required final String accessCode}) = _$GetAlbumsImpl;
+
+  @override
+  String get accessCode;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetAlbumsImplCopyWith<_$GetAlbumsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -225,6 +375,7 @@ mixin _$HomeState {
   bool get isloading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   List<Artist> get artistsList => throw _privateConstructorUsedError;
+  List<Item> get albumList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -236,7 +387,11 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool isloading, bool isError, List<Artist> artistsList});
+  $Res call(
+      {bool isloading,
+      bool isError,
+      List<Artist> artistsList,
+      List<Item> albumList});
 }
 
 /// @nodoc
@@ -255,6 +410,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? isloading = null,
     Object? isError = null,
     Object? artistsList = null,
+    Object? albumList = null,
   }) {
     return _then(_value.copyWith(
       isloading: null == isloading
@@ -269,6 +425,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.artistsList
           : artistsList // ignore: cast_nullable_to_non_nullable
               as List<Artist>,
+      albumList: null == albumList
+          ? _value.albumList
+          : albumList // ignore: cast_nullable_to_non_nullable
+              as List<Item>,
     ) as $Val);
   }
 }
@@ -281,7 +441,11 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isloading, bool isError, List<Artist> artistsList});
+  $Res call(
+      {bool isloading,
+      bool isError,
+      List<Artist> artistsList,
+      List<Item> albumList});
 }
 
 /// @nodoc
@@ -298,6 +462,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? isloading = null,
     Object? isError = null,
     Object? artistsList = null,
+    Object? albumList = null,
   }) {
     return _then(_$InitialImpl(
       isloading: null == isloading
@@ -312,6 +477,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._artistsList
           : artistsList // ignore: cast_nullable_to_non_nullable
               as List<Artist>,
+      albumList: null == albumList
+          ? _value._albumList
+          : albumList // ignore: cast_nullable_to_non_nullable
+              as List<Item>,
     ));
   }
 }
@@ -322,8 +491,10 @@ class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {required this.isloading,
       required this.isError,
-      required final List<Artist> artistsList})
-      : _artistsList = artistsList;
+      required final List<Artist> artistsList,
+      required final List<Item> albumList})
+      : _artistsList = artistsList,
+        _albumList = albumList;
 
   @override
   final bool isloading;
@@ -337,9 +508,17 @@ class _$InitialImpl implements _Initial {
     return EqualUnmodifiableListView(_artistsList);
   }
 
+  final List<Item> _albumList;
+  @override
+  List<Item> get albumList {
+    if (_albumList is EqualUnmodifiableListView) return _albumList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_albumList);
+  }
+
   @override
   String toString() {
-    return 'HomeState(isloading: $isloading, isError: $isError, artistsList: $artistsList)';
+    return 'HomeState(isloading: $isloading, isError: $isError, artistsList: $artistsList, albumList: $albumList)';
   }
 
   @override
@@ -351,12 +530,18 @@ class _$InitialImpl implements _Initial {
                 other.isloading == isloading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
             const DeepCollectionEquality()
-                .equals(other._artistsList, _artistsList));
+                .equals(other._artistsList, _artistsList) &&
+            const DeepCollectionEquality()
+                .equals(other._albumList, _albumList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isloading, isError,
-      const DeepCollectionEquality().hash(_artistsList));
+  int get hashCode => Object.hash(
+      runtimeType,
+      isloading,
+      isError,
+      const DeepCollectionEquality().hash(_artistsList),
+      const DeepCollectionEquality().hash(_albumList));
 
   @JsonKey(ignore: true)
   @override
@@ -369,7 +554,8 @@ abstract class _Initial implements HomeState {
   const factory _Initial(
       {required final bool isloading,
       required final bool isError,
-      required final List<Artist> artistsList}) = _$InitialImpl;
+      required final List<Artist> artistsList,
+      required final List<Item> albumList}) = _$InitialImpl;
 
   @override
   bool get isloading;
@@ -377,6 +563,8 @@ abstract class _Initial implements HomeState {
   bool get isError;
   @override
   List<Artist> get artistsList;
+  @override
+  List<Item> get albumList;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

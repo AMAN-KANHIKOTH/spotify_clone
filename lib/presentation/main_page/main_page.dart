@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spotify_clone/application/access_code/bloc/access_code_bloc.dart';
+import 'package:spotify_clone/application/access_code/access_code_bloc.dart';
 import 'package:spotify_clone/presentation/home/screen_home.dart';
 import 'package:spotify_clone/presentation/main_page/widgets/bottom_navigation_bar_widget.dart';
 import 'package:spotify_clone/presentation/main_page/widgets/screen_splash.dart';

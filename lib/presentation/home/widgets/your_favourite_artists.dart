@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spotify_clone/application/home/bloc/home_bloc.dart';
+import 'package:spotify_clone/application/home/home_bloc.dart';
 
 class YourFavouriteArtists extends StatelessWidget {
   const YourFavouriteArtists({super.key});
