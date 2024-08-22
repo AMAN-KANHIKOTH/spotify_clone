@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/presentation/search/widgets/app_bar_widget.dart';
+import 'package:spotify_clone/presentation/search/widgets/browse_all_widget.dart';
 import 'package:spotify_clone/presentation/search/widgets/start_browsing_widget.dart';
 
 class ScreenSearch extends StatelessWidget {
@@ -34,6 +35,7 @@ class ScreenSearch extends StatelessWidget {
               ),
             ),
             StartBrowsingWidget(),
+            BrowseAllWidget(),
           ],
         ),
       ),
