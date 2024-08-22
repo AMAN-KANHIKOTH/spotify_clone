@@ -37,7 +37,22 @@ class MainPage extends StatelessWidget {
               child: ValueListenableBuilder(
             valueListenable: bottomNaviListenable,
             builder: (context, value, child) {
-              return pages[value];
+              return Stack(
+                children: [
+                  pages[value],
+                  Positioned(
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Column(
+                            children: [Text('title'), Text('artists')],
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              );
             },
           )),
           bottomNavigationBar: BottomNavigationBarWidget(),

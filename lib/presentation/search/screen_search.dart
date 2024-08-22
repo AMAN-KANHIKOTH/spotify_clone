@@ -18,10 +18,7 @@ class ScreenSearch extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                right: 8.0,
-                left: 10,
-                top: 30,
-              ),
+                  right: 8.0, left: 10, top: 30, bottom: 20),
               child: CupertinoSearchTextField(
                 placeholder: 'What do you want to listen to?',
                 placeholderStyle: TextStyle(
