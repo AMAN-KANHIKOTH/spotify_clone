@@ -58,7 +58,7 @@ Map<String, dynamic> _$AlbumArtistToJson(AlbumArtist instance) =>
       'uri': instance.uri,
     };
 
-Item _$ItemFromJson(Map<String, dynamic> json) => Item(
+AlbumItem _$AlbumItemFromJson(Map<String, dynamic> json) => AlbumItem(
       albumType: json['album_type'] as String?,
       totalTracks: (json['total_tracks'] as num?)?.toInt(),
       availableMarkets: (json['available_markets'] as List<dynamic>?)
@@ -86,7 +86,7 @@ Item _$ItemFromJson(Map<String, dynamic> json) => Item(
           .toList(),
     );
 
-Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
+Map<String, dynamic> _$AlbumItemToJson(AlbumItem instance) => <String, dynamic>{
       'album_type': instance.albumType,
       'total_tracks': instance.totalTracks,
       'available_markets': instance.availableMarkets,
@@ -111,7 +111,7 @@ Albums _$AlbumsFromJson(Map<String, dynamic> json) => Albums(
       previous: json['previous'] as String?,
       total: (json['total'] as num?)?.toInt(),
       items: (json['items'] as List<dynamic>?)
-          ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => AlbumItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

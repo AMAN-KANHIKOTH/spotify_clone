@@ -6,6 +6,7 @@ import 'package:spotify_clone/domain/core/failures/failures.dart';
 import 'package:spotify_clone/domain/home/home_service.dart';
 import 'package:spotify_clone/domain/home/model/album_model.dart';
 import 'package:spotify_clone/domain/home/model/artist_model.dart';
+import 'package:spotify_clone/domain/home/model/fake_history.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -54,5 +55,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       ));
     });
+    on<GetFakeHistory>(
+      (event, emit) async {
+        //loading
+        emit(state.copyWith(isloading: true));
+        //fetch data
+        final Either<MainFailures, FakeHistory> getFakeHistory =
+            await _homeService.getFakeHistory(event.accessCode);
+        //send to ui
+        emit(getFakeHistory.fold(
+          (l) => state.copyWith(
+            isloading: false,
+            isError: true,
+          ),
+          (success) => state.copyWith(
+            isloading: false,
+            isError: false,
+            fakeHis: success.albums!,
+          ),
+        ));
+      },
+    );
   }
 }

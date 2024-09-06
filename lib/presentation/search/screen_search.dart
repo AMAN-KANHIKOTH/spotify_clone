@@ -1,7 +1,9 @@
+import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spotify_clone/application/access_code/access_code_bloc.dart';
+import 'package:flutter_debouncer/flutter_debouncer.dart';
+import 'package:spotify_clone/application/main/access_code_bloc.dart';
 import 'package:spotify_clone/application/search/search_bloc.dart';
 import 'package:spotify_clone/presentation/search/widgets/app_bar_widget.dart';
 import 'package:spotify_clone/presentation/search/widgets/browse_all_widget.dart';
@@ -11,12 +13,7 @@ class ScreenSearch extends StatelessWidget {
   const ScreenSearch({super.key});
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) {
-        BlocProvider.of<SearchBloc>(context).add(SearchEvent.initialise(
-            BlocProvider.of<AccessCodeBloc>(context).state.accessCode));
-      },
-    );
+    final debouncer = Debouncer();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
@@ -41,10 +38,24 @@ class ScreenSearch extends StatelessWidget {
                   CupertinoIcons.search,
                   color: Colors.black,
                 ),
+                onChanged: (value) {
+                  debouncer.debounce(
+                      duration: const Duration(seconds: 5),
+                      onDebounce: () {
+                        BlocProvider.of<SearchBloc>(context).add(
+                            SearchEvent.searchQuery(
+                                BlocProvider.of<AccessCodeBloc>(context)
+                                    .state
+                                    .accessCode,
+                                value));
+                        log(value);
+                      });
+                },
               ),
             ),
             StartBrowsingWidget(),
             BrowseAllWidget(),
+            SizedBox(height: 140),
           ],
         ),
       ),

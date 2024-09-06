@@ -13,12 +13,18 @@ class BottomNavigationBarWidget extends StatelessWidget {
       valueListenable: bottomNaviListenable,
       builder: (context, value, child) => BottomNavigationBar(
         currentIndex: bottomNaviListenable.value,
+        type: BottomNavigationBarType.fixed,
         onTap: (value) {
           bottomNaviListenable.value = value;
         },
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(229, 0, 0, 0),
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(top: 12),
+                child: Icon(Icons.home),
+              ),
+              label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(
               icon: Icon(Icons.library_music), label: 'Your Library'),

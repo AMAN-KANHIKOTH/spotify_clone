@@ -20,32 +20,38 @@ mixin _$SearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String accessCode) initialise,
+    required TResult Function(String accessCode, String query) searchQuery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessCode)? initialise,
+    TResult? Function(String accessCode, String query)? searchQuery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessCode)? initialise,
+    TResult Function(String accessCode, String query)? searchQuery,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialise value) initialise,
+    required TResult Function(_SearchQuery value) searchQuery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialise value)? initialise,
+    TResult? Function(_SearchQuery value)? searchQuery,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialise value)? initialise,
+    TResult Function(_SearchQuery value)? searchQuery,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,6 +162,7 @@ class _$InitialiseImpl implements _Initialise {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String accessCode) initialise,
+    required TResult Function(String accessCode, String query) searchQuery,
   }) {
     return initialise(accessCode);
   }
@@ -164,6 +171,7 @@ class _$InitialiseImpl implements _Initialise {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String accessCode)? initialise,
+    TResult? Function(String accessCode, String query)? searchQuery,
   }) {
     return initialise?.call(accessCode);
   }
@@ -172,6 +180,7 @@ class _$InitialiseImpl implements _Initialise {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String accessCode)? initialise,
+    TResult Function(String accessCode, String query)? searchQuery,
     required TResult orElse(),
   }) {
     if (initialise != null) {
@@ -184,6 +193,7 @@ class _$InitialiseImpl implements _Initialise {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialise value) initialise,
+    required TResult Function(_SearchQuery value) searchQuery,
   }) {
     return initialise(this);
   }
@@ -192,6 +202,7 @@ class _$InitialiseImpl implements _Initialise {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialise value)? initialise,
+    TResult? Function(_SearchQuery value)? searchQuery,
   }) {
     return initialise?.call(this);
   }
@@ -200,6 +211,7 @@ class _$InitialiseImpl implements _Initialise {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialise value)? initialise,
+    TResult Function(_SearchQuery value)? searchQuery,
     required TResult orElse(),
   }) {
     if (initialise != null) {
@@ -221,11 +233,166 @@ abstract class _Initialise implements SearchEvent {
 }
 
 /// @nodoc
+abstract class _$$SearchQueryImplCopyWith<$Res>
+    implements $SearchEventCopyWith<$Res> {
+  factory _$$SearchQueryImplCopyWith(
+          _$SearchQueryImpl value, $Res Function(_$SearchQueryImpl) then) =
+      __$$SearchQueryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String accessCode, String query});
+}
+
+/// @nodoc
+class __$$SearchQueryImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$SearchQueryImpl>
+    implements _$$SearchQueryImplCopyWith<$Res> {
+  __$$SearchQueryImplCopyWithImpl(
+      _$SearchQueryImpl _value, $Res Function(_$SearchQueryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accessCode = null,
+    Object? query = null,
+  }) {
+    return _then(_$SearchQueryImpl(
+      null == accessCode
+          ? _value.accessCode
+          : accessCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchQueryImpl implements _SearchQuery {
+  const _$SearchQueryImpl(this.accessCode, this.query);
+
+  @override
+  final String accessCode;
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'SearchEvent.searchQuery(accessCode: $accessCode, query: $query)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchQueryImpl &&
+            (identical(other.accessCode, accessCode) ||
+                other.accessCode == accessCode) &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, accessCode, query);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchQueryImplCopyWith<_$SearchQueryImpl> get copyWith =>
+      __$$SearchQueryImplCopyWithImpl<_$SearchQueryImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String accessCode) initialise,
+    required TResult Function(String accessCode, String query) searchQuery,
+  }) {
+    return searchQuery(accessCode, query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String accessCode)? initialise,
+    TResult? Function(String accessCode, String query)? searchQuery,
+  }) {
+    return searchQuery?.call(accessCode, query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String accessCode)? initialise,
+    TResult Function(String accessCode, String query)? searchQuery,
+    required TResult orElse(),
+  }) {
+    if (searchQuery != null) {
+      return searchQuery(accessCode, query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initialise value) initialise,
+    required TResult Function(_SearchQuery value) searchQuery,
+  }) {
+    return searchQuery(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialise value)? initialise,
+    TResult? Function(_SearchQuery value)? searchQuery,
+  }) {
+    return searchQuery?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialise value)? initialise,
+    TResult Function(_SearchQuery value)? searchQuery,
+    required TResult orElse(),
+  }) {
+    if (searchQuery != null) {
+      return searchQuery(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchQuery implements SearchEvent {
+  const factory _SearchQuery(final String accessCode, final String query) =
+      _$SearchQueryImpl;
+
+  @override
+  String get accessCode;
+  String get query;
+  @override
+  @JsonKey(ignore: true)
+  _$$SearchQueryImplCopyWith<_$SearchQueryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SearchState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   List<Map<String, List<PlaylistItem>>> get browseAllList =>
       throw _privateConstructorUsedError;
+  List<SearchItem> get tracks => throw _privateConstructorUsedError;
+  List<SearchItem> get artists => throw _privateConstructorUsedError;
+  List<SearchItem> get albums => throw _privateConstructorUsedError;
+  List<SearchItem> get playlists => throw _privateConstructorUsedError;
+  List<SearchItem> get shows => throw _privateConstructorUsedError;
+  List<SearchItem> get episodes => throw _privateConstructorUsedError;
+  List<SearchItem> get audiobooks => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
@@ -241,7 +408,14 @@ abstract class $SearchStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isError,
-      List<Map<String, List<PlaylistItem>>> browseAllList});
+      List<Map<String, List<PlaylistItem>>> browseAllList,
+      List<SearchItem> tracks,
+      List<SearchItem> artists,
+      List<SearchItem> albums,
+      List<SearchItem> playlists,
+      List<SearchItem> shows,
+      List<SearchItem> episodes,
+      List<SearchItem> audiobooks});
 }
 
 /// @nodoc
@@ -260,6 +434,13 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? isLoading = null,
     Object? isError = null,
     Object? browseAllList = null,
+    Object? tracks = null,
+    Object? artists = null,
+    Object? albums = null,
+    Object? playlists = null,
+    Object? shows = null,
+    Object? episodes = null,
+    Object? audiobooks = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -274,6 +455,34 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
           ? _value.browseAllList
           : browseAllList // ignore: cast_nullable_to_non_nullable
               as List<Map<String, List<PlaylistItem>>>,
+      tracks: null == tracks
+          ? _value.tracks
+          : tracks // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      artists: null == artists
+          ? _value.artists
+          : artists // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      albums: null == albums
+          ? _value.albums
+          : albums // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      playlists: null == playlists
+          ? _value.playlists
+          : playlists // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      shows: null == shows
+          ? _value.shows
+          : shows // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      episodes: null == episodes
+          ? _value.episodes
+          : episodes // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      audiobooks: null == audiobooks
+          ? _value.audiobooks
+          : audiobooks // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
     ) as $Val);
   }
 }
@@ -289,7 +498,14 @@ abstract class _$$InitialImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isError,
-      List<Map<String, List<PlaylistItem>>> browseAllList});
+      List<Map<String, List<PlaylistItem>>> browseAllList,
+      List<SearchItem> tracks,
+      List<SearchItem> artists,
+      List<SearchItem> albums,
+      List<SearchItem> playlists,
+      List<SearchItem> shows,
+      List<SearchItem> episodes,
+      List<SearchItem> audiobooks});
 }
 
 /// @nodoc
@@ -306,6 +522,13 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isError = null,
     Object? browseAllList = null,
+    Object? tracks = null,
+    Object? artists = null,
+    Object? albums = null,
+    Object? playlists = null,
+    Object? shows = null,
+    Object? episodes = null,
+    Object? audiobooks = null,
   }) {
     return _then(_$InitialImpl(
       isLoading: null == isLoading
@@ -320,6 +543,34 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._browseAllList
           : browseAllList // ignore: cast_nullable_to_non_nullable
               as List<Map<String, List<PlaylistItem>>>,
+      tracks: null == tracks
+          ? _value._tracks
+          : tracks // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      artists: null == artists
+          ? _value._artists
+          : artists // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      albums: null == albums
+          ? _value._albums
+          : albums // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      playlists: null == playlists
+          ? _value._playlists
+          : playlists // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      shows: null == shows
+          ? _value._shows
+          : shows // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      episodes: null == episodes
+          ? _value._episodes
+          : episodes // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
+      audiobooks: null == audiobooks
+          ? _value._audiobooks
+          : audiobooks // ignore: cast_nullable_to_non_nullable
+              as List<SearchItem>,
     ));
   }
 }
@@ -330,8 +581,22 @@ class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {required this.isLoading,
       required this.isError,
-      required final List<Map<String, List<PlaylistItem>>> browseAllList})
-      : _browseAllList = browseAllList;
+      required final List<Map<String, List<PlaylistItem>>> browseAllList,
+      required final List<SearchItem> tracks,
+      required final List<SearchItem> artists,
+      required final List<SearchItem> albums,
+      required final List<SearchItem> playlists,
+      required final List<SearchItem> shows,
+      required final List<SearchItem> episodes,
+      required final List<SearchItem> audiobooks})
+      : _browseAllList = browseAllList,
+        _tracks = tracks,
+        _artists = artists,
+        _albums = albums,
+        _playlists = playlists,
+        _shows = shows,
+        _episodes = episodes,
+        _audiobooks = audiobooks;
 
   @override
   final bool isLoading;
@@ -345,9 +610,65 @@ class _$InitialImpl implements _Initial {
     return EqualUnmodifiableListView(_browseAllList);
   }
 
+  final List<SearchItem> _tracks;
+  @override
+  List<SearchItem> get tracks {
+    if (_tracks is EqualUnmodifiableListView) return _tracks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tracks);
+  }
+
+  final List<SearchItem> _artists;
+  @override
+  List<SearchItem> get artists {
+    if (_artists is EqualUnmodifiableListView) return _artists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_artists);
+  }
+
+  final List<SearchItem> _albums;
+  @override
+  List<SearchItem> get albums {
+    if (_albums is EqualUnmodifiableListView) return _albums;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_albums);
+  }
+
+  final List<SearchItem> _playlists;
+  @override
+  List<SearchItem> get playlists {
+    if (_playlists is EqualUnmodifiableListView) return _playlists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_playlists);
+  }
+
+  final List<SearchItem> _shows;
+  @override
+  List<SearchItem> get shows {
+    if (_shows is EqualUnmodifiableListView) return _shows;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_shows);
+  }
+
+  final List<SearchItem> _episodes;
+  @override
+  List<SearchItem> get episodes {
+    if (_episodes is EqualUnmodifiableListView) return _episodes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_episodes);
+  }
+
+  final List<SearchItem> _audiobooks;
+  @override
+  List<SearchItem> get audiobooks {
+    if (_audiobooks is EqualUnmodifiableListView) return _audiobooks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_audiobooks);
+  }
+
   @override
   String toString() {
-    return 'SearchState(isLoading: $isLoading, isError: $isError, browseAllList: $browseAllList)';
+    return 'SearchState(isLoading: $isLoading, isError: $isError, browseAllList: $browseAllList, tracks: $tracks, artists: $artists, albums: $albums, playlists: $playlists, shows: $shows, episodes: $episodes, audiobooks: $audiobooks)';
   }
 
   @override
@@ -359,12 +680,31 @@ class _$InitialImpl implements _Initial {
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
             const DeepCollectionEquality()
-                .equals(other._browseAllList, _browseAllList));
+                .equals(other._browseAllList, _browseAllList) &&
+            const DeepCollectionEquality().equals(other._tracks, _tracks) &&
+            const DeepCollectionEquality().equals(other._artists, _artists) &&
+            const DeepCollectionEquality().equals(other._albums, _albums) &&
+            const DeepCollectionEquality()
+                .equals(other._playlists, _playlists) &&
+            const DeepCollectionEquality().equals(other._shows, _shows) &&
+            const DeepCollectionEquality().equals(other._episodes, _episodes) &&
+            const DeepCollectionEquality()
+                .equals(other._audiobooks, _audiobooks));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError,
-      const DeepCollectionEquality().hash(_browseAllList));
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      isError,
+      const DeepCollectionEquality().hash(_browseAllList),
+      const DeepCollectionEquality().hash(_tracks),
+      const DeepCollectionEquality().hash(_artists),
+      const DeepCollectionEquality().hash(_albums),
+      const DeepCollectionEquality().hash(_playlists),
+      const DeepCollectionEquality().hash(_shows),
+      const DeepCollectionEquality().hash(_episodes),
+      const DeepCollectionEquality().hash(_audiobooks));
 
   @JsonKey(ignore: true)
   @override
@@ -375,10 +715,16 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements SearchState {
   const factory _Initial(
-          {required final bool isLoading,
-          required final bool isError,
-          required final List<Map<String, List<PlaylistItem>>> browseAllList}) =
-      _$InitialImpl;
+      {required final bool isLoading,
+      required final bool isError,
+      required final List<Map<String, List<PlaylistItem>>> browseAllList,
+      required final List<SearchItem> tracks,
+      required final List<SearchItem> artists,
+      required final List<SearchItem> albums,
+      required final List<SearchItem> playlists,
+      required final List<SearchItem> shows,
+      required final List<SearchItem> episodes,
+      required final List<SearchItem> audiobooks}) = _$InitialImpl;
 
   @override
   bool get isLoading;
@@ -386,6 +732,20 @@ abstract class _Initial implements SearchState {
   bool get isError;
   @override
   List<Map<String, List<PlaylistItem>>> get browseAllList;
+  @override
+  List<SearchItem> get tracks;
+  @override
+  List<SearchItem> get artists;
+  @override
+  List<SearchItem> get albums;
+  @override
+  List<SearchItem> get playlists;
+  @override
+  List<SearchItem> get shows;
+  @override
+  List<SearchItem> get episodes;
+  @override
+  List<SearchItem> get audiobooks;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

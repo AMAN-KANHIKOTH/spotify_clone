@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_clone/application/home/home_bloc.dart';
+import 'package:spotify_clone/application/main/access_code_bloc.dart';
 
 class YourFavouriteArtists extends StatelessWidget {
   const YourFavouriteArtists({super.key});
@@ -9,10 +9,17 @@ class YourFavouriteArtists extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        BlocProvider.of<HomeBloc>(context).add(HomeEvent.getArtists(
+            accessCode:
+                BlocProvider.of<AccessCodeBloc>(context).state.accessCode));
+      },
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Your favourite artists',
           style: TextStyle(
             color: Colors.white,
@@ -24,6 +31,15 @@ class YourFavouriteArtists extends StatelessWidget {
           height: size.height * 0.225,
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
+              if (state.isloading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state.isError) {
+                return const Center(
+                  child: Text('Check Your Internet Connection'),
+                );
+              }
               return ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,

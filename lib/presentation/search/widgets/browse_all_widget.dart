@@ -1,6 +1,9 @@
+import 'dart:developer' as dev;
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spotify_clone/application/main/access_code_bloc.dart';
 import 'package:spotify_clone/application/search/search_bloc.dart';
 
 class BrowseAllWidget extends StatelessWidget {
@@ -8,11 +11,18 @@ class BrowseAllWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        BlocProvider.of<SearchBloc>(context).add(SearchEvent.initialise(
+            BlocProvider.of<AccessCodeBloc>(context).state.accessCode));
+      },
+    );
+    final random = Random();
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
             padding: const EdgeInsets.only(
               left: 10,
               top: 10,
@@ -28,6 +38,16 @@ class BrowseAllWidget extends StatelessWidget {
           ),
           BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
+              if (state.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state.isError) {
+                return const Center(
+                  child: Text('Check Your Internet Connection'),
+                );
+              }
+              // dev.log('Oh No');
               return GridView.count(
                 physics: const ScrollPhysics(),
                 crossAxisCount: 2,
@@ -39,7 +59,6 @@ class BrowseAllWidget extends StatelessWidget {
                 children: List.generate(
                   state.browseAllList.length,
                   (index) {
-                    final random = Random();
                     final colorsList = [Colors.accents, Colors.primaries];
                     final item = state.browseAllList[index];
                     final name = item.keys.elementAt(0);
@@ -61,7 +80,7 @@ class BrowseAllWidget extends StatelessWidget {
                               name,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 3,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,

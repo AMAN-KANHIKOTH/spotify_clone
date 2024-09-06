@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,7 +18,7 @@ class AccessCodeBloc extends Bloc<AccessCodeEvent, AccessCodeState> {
     on<_Initialize>((event, emit) async {
       //loading
       emit(state.copyWith(isLoading: true));
-      await Future.delayed(const Duration(seconds: 7));
+      await Future.delayed(const Duration(seconds: 2));
 
       //Get Token
       Either<MainFailures, String> getAccessOption =
@@ -33,6 +35,10 @@ class AccessCodeBloc extends Bloc<AccessCodeEvent, AccessCodeState> {
           accessCode: success,
         ),
       ));
+      Timer.periodic(
+        const Duration(hours: 1),
+        (timer) => const AccessCodeEvent.refreshCode(),
+      );
     });
     on<_RefreshCode>((event, emit) async {
       //loading

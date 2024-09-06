@@ -44,6 +44,8 @@ dependencies:
   dartz: ^0.10.1
   get_it: ^7.7.0
   injectable: ^2.4.4
+  flutter_debouncer: ^2.0.0
+  just_audio: ^0.9.40
 
 dev_dependencies:
   flutter_test:

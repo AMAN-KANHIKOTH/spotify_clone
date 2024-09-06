@@ -68,7 +68,7 @@ class AlbumArtist {
 }
 
 @JsonSerializable()
-class Item {
+class AlbumItem {
   @JsonKey(name: 'album_type')
   String? albumType;
   @JsonKey(name: 'total_tracks')
@@ -90,7 +90,7 @@ class Item {
   String? uri;
   List<AlbumArtist>? artists;
 
-  Item({
+  AlbumItem({
     this.albumType,
     this.totalTracks,
     this.availableMarkets,
@@ -107,9 +107,10 @@ class Item {
     this.artists,
   });
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory AlbumItem.fromJson(Map<String, dynamic> json) =>
+      _$AlbumItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ItemToJson(this);
+  Map<String, dynamic> toJson() => _$AlbumItemToJson(this);
 }
 
 @JsonSerializable()
@@ -120,7 +121,7 @@ class Albums {
   int? offset;
   String? previous;
   int? total;
-  List<Item>? items;
+  List<AlbumItem>? items;
 
   Albums({
     this.href,
