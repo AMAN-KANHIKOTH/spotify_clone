@@ -16,26 +16,32 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeEvent {
-  String get accessCode => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String accessCode) getArtists,
+    required TResult Function(String artistId, String accessCode) getArtists,
     required TResult Function(String accessCode) getAlbums,
     required TResult Function(String accessCode) getFakeHistory,
+    required TResult Function(
+            FakeAlbum? recent, HomeScreenState homeScreenState)
+        changeHomeScreenState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String accessCode)? getArtists,
+    TResult? Function(String artistId, String accessCode)? getArtists,
     TResult? Function(String accessCode)? getAlbums,
     TResult? Function(String accessCode)? getFakeHistory,
+    TResult? Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String accessCode)? getArtists,
+    TResult Function(String artistId, String accessCode)? getArtists,
     TResult Function(String accessCode)? getAlbums,
     TResult Function(String accessCode)? getFakeHistory,
+    TResult Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +50,8 @@ mixin _$HomeEvent {
     required TResult Function(GetArtists value) getArtists,
     required TResult Function(GetAlbums value) getAlbums,
     required TResult Function(GetFakeHistory value) getFakeHistory,
+    required TResult Function(ChangeHomeScreenState value)
+        changeHomeScreenState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +59,7 @@ mixin _$HomeEvent {
     TResult? Function(GetArtists value)? getArtists,
     TResult? Function(GetAlbums value)? getAlbums,
     TResult? Function(GetFakeHistory value)? getFakeHistory,
+    TResult? Function(ChangeHomeScreenState value)? changeHomeScreenState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,12 +67,9 @@ mixin _$HomeEvent {
     TResult Function(GetArtists value)? getArtists,
     TResult Function(GetAlbums value)? getAlbums,
     TResult Function(GetFakeHistory value)? getFakeHistory,
+    TResult Function(ChangeHomeScreenState value)? changeHomeScreenState,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeEventCopyWith<HomeEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -71,8 +77,6 @@ mixin _$HomeEvent {
 abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res, HomeEvent>;
-  @useResult
-  $Res call({String accessCode});
 }
 
 /// @nodoc
@@ -84,30 +88,15 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? accessCode = null,
-  }) {
-    return _then(_value.copyWith(
-      accessCode: null == accessCode
-          ? _value.accessCode
-          : accessCode // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetArtistsImplCopyWith<$Res>
-    implements $HomeEventCopyWith<$Res> {
+abstract class _$$GetArtistsImplCopyWith<$Res> {
   factory _$$GetArtistsImplCopyWith(
           _$GetArtistsImpl value, $Res Function(_$GetArtistsImpl) then) =
       __$$GetArtistsImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String accessCode});
+  $Res call({String artistId, String accessCode});
 }
 
 /// @nodoc
@@ -121,9 +110,14 @@ class __$$GetArtistsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? artistId = null,
     Object? accessCode = null,
   }) {
     return _then(_$GetArtistsImpl(
+      artistId: null == artistId
+          ? _value.artistId
+          : artistId // ignore: cast_nullable_to_non_nullable
+              as String,
       accessCode: null == accessCode
           ? _value.accessCode
           : accessCode // ignore: cast_nullable_to_non_nullable
@@ -135,14 +129,20 @@ class __$$GetArtistsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetArtistsImpl implements GetArtists {
-  const _$GetArtistsImpl({required this.accessCode});
+  const _$GetArtistsImpl(
+      {this.artistId =
+          '1mYsTxnqsietFxj1OgoGbG,4YRxDV8wJFPHPTeXepOstw,09UmIX92EUH9hAK4bxvHx6,1wRPtKGflJrBx9BmLsSwlU,0FEJqmeLRzsXj8hgcZaAyB',
+      required this.accessCode});
 
+  @override
+  @JsonKey()
+  final String artistId;
   @override
   final String accessCode;
 
   @override
   String toString() {
-    return 'HomeEvent.getArtists(accessCode: $accessCode)';
+    return 'HomeEvent.getArtists(artistId: $artistId, accessCode: $accessCode)';
   }
 
   @override
@@ -150,12 +150,14 @@ class _$GetArtistsImpl implements GetArtists {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetArtistsImpl &&
+            (identical(other.artistId, artistId) ||
+                other.artistId == artistId) &&
             (identical(other.accessCode, accessCode) ||
                 other.accessCode == accessCode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, accessCode);
+  int get hashCode => Object.hash(runtimeType, artistId, accessCode);
 
   @JsonKey(ignore: true)
   @override
@@ -166,33 +168,40 @@ class _$GetArtistsImpl implements GetArtists {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String accessCode) getArtists,
+    required TResult Function(String artistId, String accessCode) getArtists,
     required TResult Function(String accessCode) getAlbums,
     required TResult Function(String accessCode) getFakeHistory,
+    required TResult Function(
+            FakeAlbum? recent, HomeScreenState homeScreenState)
+        changeHomeScreenState,
   }) {
-    return getArtists(accessCode);
+    return getArtists(artistId, accessCode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String accessCode)? getArtists,
+    TResult? Function(String artistId, String accessCode)? getArtists,
     TResult? Function(String accessCode)? getAlbums,
     TResult? Function(String accessCode)? getFakeHistory,
+    TResult? Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
   }) {
-    return getArtists?.call(accessCode);
+    return getArtists?.call(artistId, accessCode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String accessCode)? getArtists,
+    TResult Function(String artistId, String accessCode)? getArtists,
     TResult Function(String accessCode)? getAlbums,
     TResult Function(String accessCode)? getFakeHistory,
+    TResult Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
     required TResult orElse(),
   }) {
     if (getArtists != null) {
-      return getArtists(accessCode);
+      return getArtists(artistId, accessCode);
     }
     return orElse();
   }
@@ -203,6 +212,8 @@ class _$GetArtistsImpl implements GetArtists {
     required TResult Function(GetArtists value) getArtists,
     required TResult Function(GetAlbums value) getAlbums,
     required TResult Function(GetFakeHistory value) getFakeHistory,
+    required TResult Function(ChangeHomeScreenState value)
+        changeHomeScreenState,
   }) {
     return getArtists(this);
   }
@@ -213,6 +224,7 @@ class _$GetArtistsImpl implements GetArtists {
     TResult? Function(GetArtists value)? getArtists,
     TResult? Function(GetAlbums value)? getAlbums,
     TResult? Function(GetFakeHistory value)? getFakeHistory,
+    TResult? Function(ChangeHomeScreenState value)? changeHomeScreenState,
   }) {
     return getArtists?.call(this);
   }
@@ -223,6 +235,7 @@ class _$GetArtistsImpl implements GetArtists {
     TResult Function(GetArtists value)? getArtists,
     TResult Function(GetAlbums value)? getAlbums,
     TResult Function(GetFakeHistory value)? getFakeHistory,
+    TResult Function(ChangeHomeScreenState value)? changeHomeScreenState,
     required TResult orElse(),
   }) {
     if (getArtists != null) {
@@ -233,24 +246,22 @@ class _$GetArtistsImpl implements GetArtists {
 }
 
 abstract class GetArtists implements HomeEvent {
-  const factory GetArtists({required final String accessCode}) =
-      _$GetArtistsImpl;
+  const factory GetArtists(
+      {final String artistId,
+      required final String accessCode}) = _$GetArtistsImpl;
 
-  @override
+  String get artistId;
   String get accessCode;
-  @override
   @JsonKey(ignore: true)
   _$$GetArtistsImplCopyWith<_$GetArtistsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GetAlbumsImplCopyWith<$Res>
-    implements $HomeEventCopyWith<$Res> {
+abstract class _$$GetAlbumsImplCopyWith<$Res> {
   factory _$$GetAlbumsImplCopyWith(
           _$GetAlbumsImpl value, $Res Function(_$GetAlbumsImpl) then) =
       __$$GetAlbumsImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String accessCode});
 }
@@ -311,9 +322,12 @@ class _$GetAlbumsImpl implements GetAlbums {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String accessCode) getArtists,
+    required TResult Function(String artistId, String accessCode) getArtists,
     required TResult Function(String accessCode) getAlbums,
     required TResult Function(String accessCode) getFakeHistory,
+    required TResult Function(
+            FakeAlbum? recent, HomeScreenState homeScreenState)
+        changeHomeScreenState,
   }) {
     return getAlbums(accessCode);
   }
@@ -321,9 +335,11 @@ class _$GetAlbumsImpl implements GetAlbums {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String accessCode)? getArtists,
+    TResult? Function(String artistId, String accessCode)? getArtists,
     TResult? Function(String accessCode)? getAlbums,
     TResult? Function(String accessCode)? getFakeHistory,
+    TResult? Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
   }) {
     return getAlbums?.call(accessCode);
   }
@@ -331,9 +347,11 @@ class _$GetAlbumsImpl implements GetAlbums {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String accessCode)? getArtists,
+    TResult Function(String artistId, String accessCode)? getArtists,
     TResult Function(String accessCode)? getAlbums,
     TResult Function(String accessCode)? getFakeHistory,
+    TResult Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
     required TResult orElse(),
   }) {
     if (getAlbums != null) {
@@ -348,6 +366,8 @@ class _$GetAlbumsImpl implements GetAlbums {
     required TResult Function(GetArtists value) getArtists,
     required TResult Function(GetAlbums value) getAlbums,
     required TResult Function(GetFakeHistory value) getFakeHistory,
+    required TResult Function(ChangeHomeScreenState value)
+        changeHomeScreenState,
   }) {
     return getAlbums(this);
   }
@@ -358,6 +378,7 @@ class _$GetAlbumsImpl implements GetAlbums {
     TResult? Function(GetArtists value)? getArtists,
     TResult? Function(GetAlbums value)? getAlbums,
     TResult? Function(GetFakeHistory value)? getFakeHistory,
+    TResult? Function(ChangeHomeScreenState value)? changeHomeScreenState,
   }) {
     return getAlbums?.call(this);
   }
@@ -368,6 +389,7 @@ class _$GetAlbumsImpl implements GetAlbums {
     TResult Function(GetArtists value)? getArtists,
     TResult Function(GetAlbums value)? getAlbums,
     TResult Function(GetFakeHistory value)? getFakeHistory,
+    TResult Function(ChangeHomeScreenState value)? changeHomeScreenState,
     required TResult orElse(),
   }) {
     if (getAlbums != null) {
@@ -380,21 +402,17 @@ class _$GetAlbumsImpl implements GetAlbums {
 abstract class GetAlbums implements HomeEvent {
   const factory GetAlbums({required final String accessCode}) = _$GetAlbumsImpl;
 
-  @override
   String get accessCode;
-  @override
   @JsonKey(ignore: true)
   _$$GetAlbumsImplCopyWith<_$GetAlbumsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GetFakeHistoryImplCopyWith<$Res>
-    implements $HomeEventCopyWith<$Res> {
+abstract class _$$GetFakeHistoryImplCopyWith<$Res> {
   factory _$$GetFakeHistoryImplCopyWith(_$GetFakeHistoryImpl value,
           $Res Function(_$GetFakeHistoryImpl) then) =
       __$$GetFakeHistoryImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String accessCode});
 }
@@ -456,9 +474,12 @@ class _$GetFakeHistoryImpl implements GetFakeHistory {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String accessCode) getArtists,
+    required TResult Function(String artistId, String accessCode) getArtists,
     required TResult Function(String accessCode) getAlbums,
     required TResult Function(String accessCode) getFakeHistory,
+    required TResult Function(
+            FakeAlbum? recent, HomeScreenState homeScreenState)
+        changeHomeScreenState,
   }) {
     return getFakeHistory(accessCode);
   }
@@ -466,9 +487,11 @@ class _$GetFakeHistoryImpl implements GetFakeHistory {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String accessCode)? getArtists,
+    TResult? Function(String artistId, String accessCode)? getArtists,
     TResult? Function(String accessCode)? getAlbums,
     TResult? Function(String accessCode)? getFakeHistory,
+    TResult? Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
   }) {
     return getFakeHistory?.call(accessCode);
   }
@@ -476,9 +499,11 @@ class _$GetFakeHistoryImpl implements GetFakeHistory {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String accessCode)? getArtists,
+    TResult Function(String artistId, String accessCode)? getArtists,
     TResult Function(String accessCode)? getAlbums,
     TResult Function(String accessCode)? getFakeHistory,
+    TResult Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
     required TResult orElse(),
   }) {
     if (getFakeHistory != null) {
@@ -493,6 +518,8 @@ class _$GetFakeHistoryImpl implements GetFakeHistory {
     required TResult Function(GetArtists value) getArtists,
     required TResult Function(GetAlbums value) getAlbums,
     required TResult Function(GetFakeHistory value) getFakeHistory,
+    required TResult Function(ChangeHomeScreenState value)
+        changeHomeScreenState,
   }) {
     return getFakeHistory(this);
   }
@@ -503,6 +530,7 @@ class _$GetFakeHistoryImpl implements GetFakeHistory {
     TResult? Function(GetArtists value)? getArtists,
     TResult? Function(GetAlbums value)? getAlbums,
     TResult? Function(GetFakeHistory value)? getFakeHistory,
+    TResult? Function(ChangeHomeScreenState value)? changeHomeScreenState,
   }) {
     return getFakeHistory?.call(this);
   }
@@ -513,6 +541,7 @@ class _$GetFakeHistoryImpl implements GetFakeHistory {
     TResult Function(GetArtists value)? getArtists,
     TResult Function(GetAlbums value)? getAlbums,
     TResult Function(GetFakeHistory value)? getFakeHistory,
+    TResult Function(ChangeHomeScreenState value)? changeHomeScreenState,
     required TResult orElse(),
   }) {
     if (getFakeHistory != null) {
@@ -526,21 +555,188 @@ abstract class GetFakeHistory implements HomeEvent {
   const factory GetFakeHistory({required final String accessCode}) =
       _$GetFakeHistoryImpl;
 
-  @override
   String get accessCode;
-  @override
   @JsonKey(ignore: true)
   _$$GetFakeHistoryImplCopyWith<_$GetFakeHistoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+abstract class _$$ChangeHomeScreenStateImplCopyWith<$Res> {
+  factory _$$ChangeHomeScreenStateImplCopyWith(
+          _$ChangeHomeScreenStateImpl value,
+          $Res Function(_$ChangeHomeScreenStateImpl) then) =
+      __$$ChangeHomeScreenStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({FakeAlbum? recent, HomeScreenState homeScreenState});
+}
+
+/// @nodoc
+class __$$ChangeHomeScreenStateImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$ChangeHomeScreenStateImpl>
+    implements _$$ChangeHomeScreenStateImplCopyWith<$Res> {
+  __$$ChangeHomeScreenStateImplCopyWithImpl(_$ChangeHomeScreenStateImpl _value,
+      $Res Function(_$ChangeHomeScreenStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? recent = freezed,
+    Object? homeScreenState = null,
+  }) {
+    return _then(_$ChangeHomeScreenStateImpl(
+      recent: freezed == recent
+          ? _value.recent
+          : recent // ignore: cast_nullable_to_non_nullable
+              as FakeAlbum?,
+      homeScreenState: null == homeScreenState
+          ? _value.homeScreenState
+          : homeScreenState // ignore: cast_nullable_to_non_nullable
+              as HomeScreenState,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeHomeScreenStateImpl implements ChangeHomeScreenState {
+  const _$ChangeHomeScreenStateImpl(
+      {this.recent, required this.homeScreenState});
+
+  @override
+  final FakeAlbum? recent;
+  @override
+  final HomeScreenState homeScreenState;
+
+  @override
+  String toString() {
+    return 'HomeEvent.changeHomeScreenState(recent: $recent, homeScreenState: $homeScreenState)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeHomeScreenStateImpl &&
+            (identical(other.recent, recent) || other.recent == recent) &&
+            (identical(other.homeScreenState, homeScreenState) ||
+                other.homeScreenState == homeScreenState));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, recent, homeScreenState);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeHomeScreenStateImplCopyWith<_$ChangeHomeScreenStateImpl>
+      get copyWith => __$$ChangeHomeScreenStateImplCopyWithImpl<
+          _$ChangeHomeScreenStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String artistId, String accessCode) getArtists,
+    required TResult Function(String accessCode) getAlbums,
+    required TResult Function(String accessCode) getFakeHistory,
+    required TResult Function(
+            FakeAlbum? recent, HomeScreenState homeScreenState)
+        changeHomeScreenState,
+  }) {
+    return changeHomeScreenState(recent, homeScreenState);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String artistId, String accessCode)? getArtists,
+    TResult? Function(String accessCode)? getAlbums,
+    TResult? Function(String accessCode)? getFakeHistory,
+    TResult? Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
+  }) {
+    return changeHomeScreenState?.call(recent, homeScreenState);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String artistId, String accessCode)? getArtists,
+    TResult Function(String accessCode)? getAlbums,
+    TResult Function(String accessCode)? getFakeHistory,
+    TResult Function(FakeAlbum? recent, HomeScreenState homeScreenState)?
+        changeHomeScreenState,
+    required TResult orElse(),
+  }) {
+    if (changeHomeScreenState != null) {
+      return changeHomeScreenState(recent, homeScreenState);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetArtists value) getArtists,
+    required TResult Function(GetAlbums value) getAlbums,
+    required TResult Function(GetFakeHistory value) getFakeHistory,
+    required TResult Function(ChangeHomeScreenState value)
+        changeHomeScreenState,
+  }) {
+    return changeHomeScreenState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetArtists value)? getArtists,
+    TResult? Function(GetAlbums value)? getAlbums,
+    TResult? Function(GetFakeHistory value)? getFakeHistory,
+    TResult? Function(ChangeHomeScreenState value)? changeHomeScreenState,
+  }) {
+    return changeHomeScreenState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetArtists value)? getArtists,
+    TResult Function(GetAlbums value)? getAlbums,
+    TResult Function(GetFakeHistory value)? getFakeHistory,
+    TResult Function(ChangeHomeScreenState value)? changeHomeScreenState,
+    required TResult orElse(),
+  }) {
+    if (changeHomeScreenState != null) {
+      return changeHomeScreenState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeHomeScreenState implements HomeEvent {
+  const factory ChangeHomeScreenState(
+          {final FakeAlbum? recent,
+          required final HomeScreenState homeScreenState}) =
+      _$ChangeHomeScreenStateImpl;
+
+  FakeAlbum? get recent;
+  HomeScreenState get homeScreenState;
+  @JsonKey(ignore: true)
+  _$$ChangeHomeScreenStateImplCopyWith<_$ChangeHomeScreenStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeState {
   bool get isloading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
-  List<Artist> get artistsList => throw _privateConstructorUsedError;
+  List<Artist> get favList => throw _privateConstructorUsedError;
   List<AlbumItem> get albumList => throw _privateConstructorUsedError;
   List<FakeAlbum> get fakeHis => throw _privateConstructorUsedError;
+  HomeScreenState get currentState => throw _privateConstructorUsedError;
+  FakeAlbum get recentSearch => throw _privateConstructorUsedError;
+  List<Artist> get recentArtist => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -555,9 +751,12 @@ abstract class $HomeStateCopyWith<$Res> {
   $Res call(
       {bool isloading,
       bool isError,
-      List<Artist> artistsList,
+      List<Artist> favList,
       List<AlbumItem> albumList,
-      List<FakeAlbum> fakeHis});
+      List<FakeAlbum> fakeHis,
+      HomeScreenState currentState,
+      FakeAlbum recentSearch,
+      List<Artist> recentArtist});
 }
 
 /// @nodoc
@@ -575,9 +774,12 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $Res call({
     Object? isloading = null,
     Object? isError = null,
-    Object? artistsList = null,
+    Object? favList = null,
     Object? albumList = null,
     Object? fakeHis = null,
+    Object? currentState = null,
+    Object? recentSearch = null,
+    Object? recentArtist = null,
   }) {
     return _then(_value.copyWith(
       isloading: null == isloading
@@ -588,9 +790,9 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
-      artistsList: null == artistsList
-          ? _value.artistsList
-          : artistsList // ignore: cast_nullable_to_non_nullable
+      favList: null == favList
+          ? _value.favList
+          : favList // ignore: cast_nullable_to_non_nullable
               as List<Artist>,
       albumList: null == albumList
           ? _value.albumList
@@ -600,6 +802,18 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.fakeHis
           : fakeHis // ignore: cast_nullable_to_non_nullable
               as List<FakeAlbum>,
+      currentState: null == currentState
+          ? _value.currentState
+          : currentState // ignore: cast_nullable_to_non_nullable
+              as HomeScreenState,
+      recentSearch: null == recentSearch
+          ? _value.recentSearch
+          : recentSearch // ignore: cast_nullable_to_non_nullable
+              as FakeAlbum,
+      recentArtist: null == recentArtist
+          ? _value.recentArtist
+          : recentArtist // ignore: cast_nullable_to_non_nullable
+              as List<Artist>,
     ) as $Val);
   }
 }
@@ -615,9 +829,12 @@ abstract class _$$InitialImplCopyWith<$Res>
   $Res call(
       {bool isloading,
       bool isError,
-      List<Artist> artistsList,
+      List<Artist> favList,
       List<AlbumItem> albumList,
-      List<FakeAlbum> fakeHis});
+      List<FakeAlbum> fakeHis,
+      HomeScreenState currentState,
+      FakeAlbum recentSearch,
+      List<Artist> recentArtist});
 }
 
 /// @nodoc
@@ -633,9 +850,12 @@ class __$$InitialImplCopyWithImpl<$Res>
   $Res call({
     Object? isloading = null,
     Object? isError = null,
-    Object? artistsList = null,
+    Object? favList = null,
     Object? albumList = null,
     Object? fakeHis = null,
+    Object? currentState = null,
+    Object? recentSearch = null,
+    Object? recentArtist = null,
   }) {
     return _then(_$InitialImpl(
       isloading: null == isloading
@@ -646,9 +866,9 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
-      artistsList: null == artistsList
-          ? _value._artistsList
-          : artistsList // ignore: cast_nullable_to_non_nullable
+      favList: null == favList
+          ? _value._favList
+          : favList // ignore: cast_nullable_to_non_nullable
               as List<Artist>,
       albumList: null == albumList
           ? _value._albumList
@@ -658,6 +878,18 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._fakeHis
           : fakeHis // ignore: cast_nullable_to_non_nullable
               as List<FakeAlbum>,
+      currentState: null == currentState
+          ? _value.currentState
+          : currentState // ignore: cast_nullable_to_non_nullable
+              as HomeScreenState,
+      recentSearch: null == recentSearch
+          ? _value.recentSearch
+          : recentSearch // ignore: cast_nullable_to_non_nullable
+              as FakeAlbum,
+      recentArtist: null == recentArtist
+          ? _value._recentArtist
+          : recentArtist // ignore: cast_nullable_to_non_nullable
+              as List<Artist>,
     ));
   }
 }
@@ -668,23 +900,27 @@ class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {required this.isloading,
       required this.isError,
-      required final List<Artist> artistsList,
+      required final List<Artist> favList,
       required final List<AlbumItem> albumList,
-      required final List<FakeAlbum> fakeHis})
-      : _artistsList = artistsList,
+      required final List<FakeAlbum> fakeHis,
+      required this.currentState,
+      required this.recentSearch,
+      required final List<Artist> recentArtist})
+      : _favList = favList,
         _albumList = albumList,
-        _fakeHis = fakeHis;
+        _fakeHis = fakeHis,
+        _recentArtist = recentArtist;
 
   @override
   final bool isloading;
   @override
   final bool isError;
-  final List<Artist> _artistsList;
+  final List<Artist> _favList;
   @override
-  List<Artist> get artistsList {
-    if (_artistsList is EqualUnmodifiableListView) return _artistsList;
+  List<Artist> get favList {
+    if (_favList is EqualUnmodifiableListView) return _favList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_artistsList);
+    return EqualUnmodifiableListView(_favList);
   }
 
   final List<AlbumItem> _albumList;
@@ -704,8 +940,20 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
+  final HomeScreenState currentState;
+  @override
+  final FakeAlbum recentSearch;
+  final List<Artist> _recentArtist;
+  @override
+  List<Artist> get recentArtist {
+    if (_recentArtist is EqualUnmodifiableListView) return _recentArtist;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recentArtist);
+  }
+
+  @override
   String toString() {
-    return 'HomeState(isloading: $isloading, isError: $isError, artistsList: $artistsList, albumList: $albumList, fakeHis: $fakeHis)';
+    return 'HomeState(isloading: $isloading, isError: $isError, favList: $favList, albumList: $albumList, fakeHis: $fakeHis, currentState: $currentState, recentSearch: $recentSearch, recentArtist: $recentArtist)';
   }
 
   @override
@@ -716,11 +964,16 @@ class _$InitialImpl implements _Initial {
             (identical(other.isloading, isloading) ||
                 other.isloading == isloading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
-            const DeepCollectionEquality()
-                .equals(other._artistsList, _artistsList) &&
+            const DeepCollectionEquality().equals(other._favList, _favList) &&
             const DeepCollectionEquality()
                 .equals(other._albumList, _albumList) &&
-            const DeepCollectionEquality().equals(other._fakeHis, _fakeHis));
+            const DeepCollectionEquality().equals(other._fakeHis, _fakeHis) &&
+            (identical(other.currentState, currentState) ||
+                other.currentState == currentState) &&
+            (identical(other.recentSearch, recentSearch) ||
+                other.recentSearch == recentSearch) &&
+            const DeepCollectionEquality()
+                .equals(other._recentArtist, _recentArtist));
   }
 
   @override
@@ -728,9 +981,12 @@ class _$InitialImpl implements _Initial {
       runtimeType,
       isloading,
       isError,
-      const DeepCollectionEquality().hash(_artistsList),
+      const DeepCollectionEquality().hash(_favList),
       const DeepCollectionEquality().hash(_albumList),
-      const DeepCollectionEquality().hash(_fakeHis));
+      const DeepCollectionEquality().hash(_fakeHis),
+      currentState,
+      recentSearch,
+      const DeepCollectionEquality().hash(_recentArtist));
 
   @JsonKey(ignore: true)
   @override
@@ -743,20 +999,29 @@ abstract class _Initial implements HomeState {
   const factory _Initial(
       {required final bool isloading,
       required final bool isError,
-      required final List<Artist> artistsList,
+      required final List<Artist> favList,
       required final List<AlbumItem> albumList,
-      required final List<FakeAlbum> fakeHis}) = _$InitialImpl;
+      required final List<FakeAlbum> fakeHis,
+      required final HomeScreenState currentState,
+      required final FakeAlbum recentSearch,
+      required final List<Artist> recentArtist}) = _$InitialImpl;
 
   @override
   bool get isloading;
   @override
   bool get isError;
   @override
-  List<Artist> get artistsList;
+  List<Artist> get favList;
   @override
   List<AlbumItem> get albumList;
   @override
   List<FakeAlbum> get fakeHis;
+  @override
+  HomeScreenState get currentState;
+  @override
+  FakeAlbum get recentSearch;
+  @override
+  List<Artist> get recentArtist;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

@@ -384,7 +384,7 @@ abstract class _SearchQuery implements SearchEvent {
 mixin _$SearchState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
-  List<Map<String, List<PlaylistItem>>> get browseAllList =>
+  List<Tuple2<String, List<PlaylistItem>>> get browseAllList =>
       throw _privateConstructorUsedError;
   List<SearchItem> get tracks => throw _privateConstructorUsedError;
   List<SearchItem> get artists => throw _privateConstructorUsedError;
@@ -408,7 +408,7 @@ abstract class $SearchStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isError,
-      List<Map<String, List<PlaylistItem>>> browseAllList,
+      List<Tuple2<String, List<PlaylistItem>>> browseAllList,
       List<SearchItem> tracks,
       List<SearchItem> artists,
       List<SearchItem> albums,
@@ -454,7 +454,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
       browseAllList: null == browseAllList
           ? _value.browseAllList
           : browseAllList // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, List<PlaylistItem>>>,
+              as List<Tuple2<String, List<PlaylistItem>>>,
       tracks: null == tracks
           ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
@@ -498,7 +498,7 @@ abstract class _$$InitialImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isError,
-      List<Map<String, List<PlaylistItem>>> browseAllList,
+      List<Tuple2<String, List<PlaylistItem>>> browseAllList,
       List<SearchItem> tracks,
       List<SearchItem> artists,
       List<SearchItem> albums,
@@ -542,7 +542,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       browseAllList: null == browseAllList
           ? _value._browseAllList
           : browseAllList // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, List<PlaylistItem>>>,
+              as List<Tuple2<String, List<PlaylistItem>>>,
       tracks: null == tracks
           ? _value._tracks
           : tracks // ignore: cast_nullable_to_non_nullable
@@ -581,7 +581,7 @@ class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {required this.isLoading,
       required this.isError,
-      required final List<Map<String, List<PlaylistItem>>> browseAllList,
+      required final List<Tuple2<String, List<PlaylistItem>>> browseAllList,
       required final List<SearchItem> tracks,
       required final List<SearchItem> artists,
       required final List<SearchItem> albums,
@@ -602,9 +602,9 @@ class _$InitialImpl implements _Initial {
   final bool isLoading;
   @override
   final bool isError;
-  final List<Map<String, List<PlaylistItem>>> _browseAllList;
+  final List<Tuple2<String, List<PlaylistItem>>> _browseAllList;
   @override
-  List<Map<String, List<PlaylistItem>>> get browseAllList {
+  List<Tuple2<String, List<PlaylistItem>>> get browseAllList {
     if (_browseAllList is EqualUnmodifiableListView) return _browseAllList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_browseAllList);
@@ -717,7 +717,7 @@ abstract class _Initial implements SearchState {
   const factory _Initial(
       {required final bool isLoading,
       required final bool isError,
-      required final List<Map<String, List<PlaylistItem>>> browseAllList,
+      required final List<Tuple2<String, List<PlaylistItem>>> browseAllList,
       required final List<SearchItem> tracks,
       required final List<SearchItem> artists,
       required final List<SearchItem> albums,
@@ -731,7 +731,7 @@ abstract class _Initial implements SearchState {
   @override
   bool get isError;
   @override
-  List<Map<String, List<PlaylistItem>>> get browseAllList;
+  List<Tuple2<String, List<PlaylistItem>>> get browseAllList;
   @override
   List<SearchItem> get tracks;
   @override

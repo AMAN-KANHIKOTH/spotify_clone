@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,7 +19,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       //loading
       emit(state.copyWith(isLoading: true));
       //get browse all
-      Either<MainFailures, List<Map<String, List<PlaylistItem>>>> getBrowseAll =
+      Either<MainFailures, List<Tuple2<String, List<PlaylistItem>>>>
+          getBrowseAll =
           await _searchServices.getBrowseCategories(event.accessCode);
       //send to ui
       emit(getBrowseAll.fold(

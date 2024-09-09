@@ -20,9 +20,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       // loading
       emit(state.copyWith(isloading: true));
       //Fetch Artists
-
       final Either<MainFailures, ArtistModel> getArtists =
-          await _homeService.getArtists(event.accessCode);
+          await _homeService.getArtists(
+        accessCode: event.accessCode,
+        artistIds: event.artistId,
+      );
       //send to ui
       emit(getArtists.fold(
         (l) => state.copyWith(
@@ -30,9 +32,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           isError: true,
         ),
         (success) => state.copyWith(
-            isloading: false,
-            isError: false,
-            artistsList: success.artists ?? []),
+          isloading: false,
+          isError: false,
+          favList: success.artists ?? [],
+        ),
       ));
     });
 
@@ -74,6 +77,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             fakeHis: success.albums!,
           ),
         ));
+      },
+    );
+    on<ChangeHomeScreenState>(
+      (event, emit) {
+        if (event.homeScreenState == HomeScreenState.recentSearches) {
+          emit(state.copyWith(
+              currentState: event.homeScreenState,
+              recentSearch: event.recent!));
+        } else if (event.homeScreenState == HomeScreenState.favArtist) {
+        } else if (event.homeScreenState == HomeScreenState.album) {
+        } else if (event.homeScreenState == HomeScreenState.home) {
+          emit(state.copyWith(
+            currentState: HomeScreenState.home,
+          ));
+        }
       },
     );
   }

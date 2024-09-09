@@ -10,7 +10,7 @@ class Artist {
   List<String>? genres;
   String? href;
   String? id;
-  List<Image>? images;
+  List<ArtistImage>? images;
   String? name;
   int? popularity;
   String? type;
@@ -64,16 +64,17 @@ class Followers {
 }
 
 @JsonSerializable()
-class Image {
+class ArtistImage {
   int? height;
   String? url;
   int? width;
 
-  Image({this.height, this.url, this.width});
+  ArtistImage({this.height, this.url, this.width});
 
-  factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
+  factory ArtistImage.fromJson(Map<String, dynamic> json) =>
+      _$ArtistImageFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ImageToJson(this);
+  Map<String, dynamic> toJson() => _$ArtistImageToJson(this);
 }
 
 @JsonSerializable()

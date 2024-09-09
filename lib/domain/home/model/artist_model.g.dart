@@ -19,7 +19,7 @@ Artist _$ArtistFromJson(Map<String, dynamic> json) => Artist(
       href: json['href'] as String?,
       id: json['id'] as String?,
       images: (json['images'] as List<dynamic>?)
-          ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ArtistImage.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String?,
       popularity: (json['popularity'] as num?)?.toInt(),
@@ -59,13 +59,14 @@ Map<String, dynamic> _$FollowersToJson(Followers instance) => <String, dynamic>{
       'total': instance.total,
     };
 
-Image _$ImageFromJson(Map<String, dynamic> json) => Image(
+ArtistImage _$ArtistImageFromJson(Map<String, dynamic> json) => ArtistImage(
       height: (json['height'] as num?)?.toInt(),
       url: json['url'] as String?,
       width: (json['width'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$ImageToJson(Image instance) => <String, dynamic>{
+Map<String, dynamic> _$ArtistImageToJson(ArtistImage instance) =>
+    <String, dynamic>{
       'height': instance.height,
       'url': instance.url,
       'width': instance.width,

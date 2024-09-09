@@ -5,7 +5,7 @@ class SearchState with _$SearchState {
   const factory SearchState({
     required bool isLoading,
     required bool isError,
-    required List<Map<String, List<PlaylistItem>>> browseAllList,
+    required List<Tuple2<String, List<PlaylistItem>>> browseAllList,
     required List<SearchItem> tracks,
     required List<SearchItem> artists,
     required List<SearchItem> albums,

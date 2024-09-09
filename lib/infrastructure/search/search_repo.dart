@@ -14,12 +14,12 @@ class SearchRepo implements SearchServices {
   final dio = Dio();
 
   @override
-  Future<Either<MainFailures, List<Map<String, List<PlaylistItem>>>>>
+  Future<Either<MainFailures, List<Tuple2<String, List<PlaylistItem>>>>>
       getBrowseCategories(String accessCode) async {
-    List<Map<String, List<PlaylistItem>>> BrowseAll = [];
+    List<Tuple2<String, List<PlaylistItem>>> BrowseAll = [];
     try {
       final response = await dio.get(
-        'https://api.spotify.com/v1/browse/categories',
+        'https://api.spotify.com/v1/browse/categories?limit=50',
         options: Options(headers: {'Authorization': 'Bearer $accessCode'}),
       );
       if (response.statusCode == 200) {
@@ -33,7 +33,10 @@ class SearchRepo implements SearchServices {
           if (response.statusCode == 200) {
             final playlist = PlaylistCategory.fromJson(response.data);
             if (playlist.playlists!.items.toString() != '[]') {
-              BrowseAll.add({category.name!: playlist.playlists!.items!});
+              BrowseAll.add(Tuple2(
+                category.name!,
+                playlist.playlists!.items!,
+              ));
             }
           }
         }

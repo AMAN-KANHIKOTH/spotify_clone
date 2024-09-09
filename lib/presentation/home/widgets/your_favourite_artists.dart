@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_clone/application/home/home_bloc.dart';
@@ -40,11 +42,12 @@ class YourFavouriteArtists extends StatelessWidget {
                   child: Text('Check Your Internet Connection'),
                 );
               }
+              log(state.favList.length.toString());
               return ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: List.generate(
-                  state.artistsList.length,
+                  state.favList.length,
                   (index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Column(
@@ -52,7 +55,7 @@ class YourFavouriteArtists extends StatelessWidget {
                         CircleAvatar(
                           minRadius: 80,
                           backgroundImage: NetworkImage(
-                              state.artistsList[index].images![0].url!),
+                              state.favList[index].images![0].url!),
                           // child: Image.network(
                           //   fit: BoxFit.scaleDown,
                           //   state.artistsList[index].images![0].url!,
@@ -61,7 +64,7 @@ class YourFavouriteArtists extends StatelessWidget {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          state.artistsList[index].name ?? 'Unknown',
+                          state.favList[index].name ?? 'Unknown',
                           style: TextStyle(color: Colors.white),
                         )
                       ],

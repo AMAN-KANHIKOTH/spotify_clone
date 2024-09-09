@@ -42,39 +42,53 @@ class RecentSearches extends StatelessWidget {
             state.fakeHis.length,
             (index) {
               final item = state.fakeHis[index];
-              return Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: const Color.fromARGB(255, 34, 30, 30),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      height: double.maxFinite,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(5),
-                            bottomLeft: Radius.circular(5),
-                          ),
-                          image: DecorationImage(
-                              image: NetworkImage(item.images![0].url!))),
-                      // child: Image.network(
-                      //   item.images![0].url!,
-                      //   fit: BoxFit.contain,
-                      // ),
+              return GestureDetector(
+                onTap: () {
+                  BlocProvider.of<HomeBloc>(context).add(
+                    ChangeHomeScreenState(
+                      homeScreenState: HomeScreenState.recentSearches,
+                      recent: item,
                     ),
-                    const SizedBox(width: 10),
-                    Flexible(
-                      child: Text(
-                        item.name ?? 'Unknown',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(color: Colors.white),
+                  );
+                  BlocProvider.of<HomeBloc>(context).add(GetArtists(
+                      accessCode: BlocProvider.of<AccessCodeBloc>(context)
+                          .state
+                          .accessCode));
+                },
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: const Color.fromARGB(255, 34, 30, 30),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: double.maxFinite,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              bottomLeft: Radius.circular(5),
+                            ),
+                            image: DecorationImage(
+                                image: NetworkImage(item.images![0].url!))),
+                        // child: Image.network(
+                        //   item.images![0].url!,
+                        //   fit: BoxFit.contain,
+                        // ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 10),
+                      Flexible(
+                        child: Text(
+                          item.name ?? 'Unknown',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

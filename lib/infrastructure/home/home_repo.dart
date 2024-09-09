@@ -21,21 +21,32 @@ const list = [
 class HomeRepo implements HomeService {
   final dio = Dio();
   @override
-  Future<Either<MainFailures, ArtistModel>> getArtists(
-      String accessCode) async {
+  Future<Either<MainFailures, ArtistModel>> getArtists({
+    required String accessCode,
+    String artistIds =
+        '1mYsTxnqsietFxj1OgoGbG,4YRxDV8wJFPHPTeXepOstw,09UmIX92EUH9hAK4bxvHx6,1wRPtKGflJrBx9BmLsSwlU,0FEJqmeLRzsXj8hgcZaAyB',
+  }) async {
+    if (artistIds == '') {
+      artistIds =
+          '1mYsTxnqsietFxj1OgoGbG,4YRxDV8wJFPHPTeXepOstw,09UmIX92EUH9hAK4bxvHx6,1wRPtKGflJrBx9BmLsSwlU,0FEJqmeLRzsXj8hgcZaAyB';
+    }
     try {
-      final response = await dio.request(
-          'https://api.spotify.com/v1/artists?ids=1mYsTxnqsietFxj1OgoGbG,4YRxDV8wJFPHPTeXepOstw,09UmIX92EUH9hAK4bxvHx6,1wRPtKGflJrBx9BmLsSwlU,0FEJqmeLRzsXj8hgcZaAyB',
-          options: Options(
-              method: 'GET', headers: {'Authorization': 'Bearer $accessCode'}));
-      //log('message');
+      log(artistIds);
+      final response =
+          await dio.request('https://api.spotify.com/v1/artists?ids=$artistIds',
+              options: Options(
+                method: 'GET',
+                headers: {'Authorization': 'Bearer $accessCode'},
+              ));
       if (response.statusCode == 200) {
         final artistModel = ArtistModel.fromJson(response.data);
+        log(artistModel.artists!.first.name!);
         return (right(artistModel));
       } else {
         return left(const MainFailures.serverFailures());
       }
     } catch (e) {
+      log(e.toString());
       return left(const MainFailures.clientFailures());
     }
   }

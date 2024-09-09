@@ -61,8 +61,8 @@ class BrowseAllWidget extends StatelessWidget {
                   (index) {
                     final colorsList = [Colors.accents, Colors.primaries];
                     final item = state.browseAllList[index];
-                    final name = item.keys.elementAt(0);
-                    final data = item[name];
+                    final name = item.value1;
+                    final data = item.value2;
                     return Container(
                       height: 60,
                       padding: EdgeInsets.only(left: 14, top: 8),
@@ -106,7 +106,7 @@ class BrowseAllWidget extends StatelessWidget {
                                               BorderRadius.circular(5),
                                           image: DecorationImage(
                                               image: NetworkImage(
-                                                  data![0].images![0].url!))),
+                                                  data[0].images![0].url!))),
                                       // child: Image.network(
                                       //   fit: BoxFit.fitWidth,
                                       //   'https://t.scdn.co/images/495fadcefe234607b14b2db3381f3f5d.jpeg',
